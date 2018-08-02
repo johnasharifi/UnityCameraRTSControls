@@ -14,7 +14,7 @@ public class ScriptUserInput : MonoBehaviour {
 		if (Input.GetMouseButton (1)) {
 			float dx = (Input.mousePosition.x - inst_mouse_position.x) / Screen.width;
 			float dy = (Input.mousePosition.y - inst_mouse_position.y) / Screen.height;
-			transform.eulerAngles += new Vector3(dy * -200f * Time.deltaTime, dx * 200f * Time.deltaTime, 0f) * cam_rotate_speed;
+			transform.eulerAngles += new Vector3(Mathf.Clamp(dy, -200f, 200f) * -200f * Time.deltaTime, Mathf.Clamp(dx, -200f, 200f) * 200f * Time.deltaTime, 0f) * cam_rotate_speed;
 		}
 
 		inst_mouse_position = Input.mousePosition;
