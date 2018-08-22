@@ -5,8 +5,8 @@ using UnityEngine;
 public class ScriptUserInput : MonoBehaviour {
 	Vector3 inst_mouse_position = Vector3.zero;
 
-	private const float cam_scope_speed = 10f;
-	private const float cam_pan_speed = 20f;
+	private const float cam_scope_speed = 100f;
+	private const float cam_pan_speed = 200f;
 	private const float cam_rotate_speed = 30f;
 
 	// Update is called once per frame
@@ -14,7 +14,7 @@ public class ScriptUserInput : MonoBehaviour {
 		if (Input.GetMouseButton (1)) {
 			float dx = (Input.mousePosition.x - inst_mouse_position.x) / Screen.width;
 			float dy = (Input.mousePosition.y - inst_mouse_position.y) / Screen.height;
-			transform.eulerAngles += new Vector3(Mathf.Clamp(dy, -200f, 200f) * -200f * Time.deltaTime, Mathf.Clamp(dx, -200f, 200f) * 200f * Time.deltaTime, 0f) * cam_rotate_speed;
+			transform.eulerAngles += new Vector3(Mathf.Clamp(dy, -2f, 2f) * -200f * Time.deltaTime, Mathf.Clamp(dx, -2f, 2f) * 200f * Time.deltaTime, 0f) * cam_rotate_speed;
 		}
 
 		inst_mouse_position = Input.mousePosition;
@@ -31,6 +31,5 @@ public class ScriptUserInput : MonoBehaviour {
 		if (Input.GetKey (KeyCode.DownArrow))
 			cam_pos -= Vector3.ProjectOnPlane (transform.forward, Vector3.up).normalized * Time.deltaTime * cam_pan_speed;
 		transform.position = cam_pos;
-
 	}
 }
